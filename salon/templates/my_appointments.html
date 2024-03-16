@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        background: grey
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h3 class="col-11 col-md-4 mx-auto mt-5">My Appoinments</h3>
+            <table class="table table-hover table-striped table-info">
+                <thead>
+                    <tr>
+                        <th scope="col">salon</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">stylist</th>
+                        <th scope="col">date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if appointments|length == 0 %}
+                        <tr>
+                            <th scope="row">-</th>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+
+                        </tr>
+                    {% endif %}
+                    {% for appointment in appointments %}
+                        <tr>
+                            <th scope="row">{{ appointment.stylist.salon.name }}</th>
+                            <td>{{ appointment.stylist.salon.address }}</td>
+                            <td>{{ appointment.stylist.name }}</td>
+                            <td>{{ appointment.appointment_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

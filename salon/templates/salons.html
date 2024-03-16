@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        background: grey
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h3 class="col-11 col-md-4 mx-auto mt-5">salons</h3>
+            <table class="table table-hover table-striped table-info">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if salons|length == 0 %}
+                        <tr>
+                            <th scope="row">-</th>
+                            <td>-</td>
+                            <td></td>
+
+                        </tr>
+                    {% endif %}
+                    {% for salon in salons %}
+                        <tr>
+                            <th scope="row">{{ salon.name }}</th>
+                            <td>{{ salon.address }}</td>
+                            <td><a href="{% url 'stylist' salon.id%}"><button type="button" class="btn btn-outline-success btn-sm">view</button></a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

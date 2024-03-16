@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static%}
+{% block content%}
+<style>
+    body{
+        background-image: url("{% static 'bg2.webp' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
+   .d-bg {
+        background-color: #000;
+    }
+    .neon {
+        color: white;
+    }
+    .neon input[type="text"],
+    .neon input[type="password"] {
+        background-color: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .neon input[type="text"]:focus,
+    .neon input[type="password"]:focus {
+        outline: none;
+        border-color: #0f0;
+        box-shadow: 0 0  5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0;
+    }
+    .neon button {
+        background-color: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .neon button:hover {
+        background-color: #0f0;
+        border-color: #0f0;
+    }
+</style>
+<div class="row">
+    <div class="col-11 col-md-4 mx-auto mt-5 d-bg p-5">
+        <h1 class="text-info">Sign Up</h1>
+        {% if form.errors%}
+            {% for field in form %}
+                {%for error in field.errors%}
+                    <div class="alert alert-danger">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                {%endfor%}
+            {%endfor%}
+            {% for error in form.non_field_errors%}
+                <div class="alert alert-danger ">
+                    <strong>{{error|escape}}</strong>
+                </div>
+            {%endfor%}
+        {%endif%}
+
+        <form method="post" class="neon">
+            {% csrf_token%}
+            {{ form|crispy }}
+
+            <button class="btn btn-success neon" type="submit">Sign Up</button>
+        </form>
+        <div class="pt-3">
+            <small class="text-info"> Already have an account? <a href="{% url 'login' %}" class="btn btn-outline-success btn-sm neon">Log in</a></small>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

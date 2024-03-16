@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content%}
+<style>
+    body{
+        background: grey
+    }
+   .d-bg {
+        background-color: #000;
+    }
+    .neon {
+        color: white;
+
+    }
+    .neon input[type="text"],
+    .neon input[type="password"] {
+        background-color: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .neon input[type="text"]:focus,
+    .neon input[type="password"]:focus {
+        outline: none;
+        border-color: #0f0;
+        box-shadow: 0 0  5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0;
+    }
+    .neon button {
+        background-color: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .neon button:hover {
+        background-color: #0f0;
+        border-color: #0f0;
+    }
+</style>
+
+<div class="row ">
+    <div class="col-11 col-md-4 mx-auto mt-5 d-bg p-5">
+        <h1 class="text-info">Update details</h1>
+        <form method="post" class="neon">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <button class="btn btn-success  neon">Update</button>
+        </form>
+    </div>
+</div>
+{% endblock content%}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<style>
+    body{
+        background: black
+    }
+</style>
+<div class="container mt-5 d-flex justify-content-center">
+        <div class="col text-center border border-success border-2  p-3" style="color:white">
+            <h3 class="text text-primary text-center">PERSONAL DETAILS</h3>
+            {% for detail in details%}
+                <p>USERNAME: {{detail.username}}</p><br>
+                <p>EMAIL: {{detail.email}}</p><br>
+                <p>PHONE: {{detail.phone}}</p><br>
+            {% endfor %}
+            <a href="{% url 'update' %}"><button class="btn btn-outline-success me-2" style="color:white">edit details</button></a>
+            <a href="{% url 'change_password' %}"><button class="btn btn-outline-success" style="color:white">change password</button></a>
+            <a href="{% url 'home' %}"><button class="btn btn-outline-success" style="color:white">home</button></a>
+        </div>
+        </div>
+</div>
+{% endblock content%}
